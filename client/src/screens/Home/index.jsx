@@ -7,7 +7,7 @@ import TaskContainer from 'components/TaskContainer';
 
 function Home() {
   return (
-    <div>
+    <>
       <AppBar />
       <S.BoardContainer>
         <TaskContainer title='TODO'>
@@ -45,9 +45,39 @@ function Home() {
             priority='Medium'
             status='done'
           />
+          <Card
+            title='this is new ticket'
+            description='this is new ticket this is new ticket'
+            priority='Medium'
+            status='done'
+          />
+          <Card
+            title='this is new ticket'
+            description='this is new ticket this is new ticket'
+            priority='Medium'
+            status='done'
+          />
+          <Card
+            title='this is new ticket'
+            description='this is new ticket this is new ticket'
+            priority='Medium'
+            status='done'
+          />
+          <Card
+            title='this is new ticket'
+            description='this is new ticket this is new ticket'
+            priority='Medium'
+            status='done'
+          />
+          <Card
+            title='this is new ticket'
+            description='this is new ticket this is new ticket'
+            priority='Medium'
+            status='done'
+          />
         </TaskContainer>
       </S.BoardContainer>
-    </div>
+    </>
   );
 }
 

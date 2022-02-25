@@ -7,7 +7,7 @@ function TaskContainer({title, children}) {
   return (
     <S.Container>
       <S.Title>{title}</S.Title>
-      {children}
+      <S.Content>{children}</S.Content>
     </S.Container>
   );
 }
