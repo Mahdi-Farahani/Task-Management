@@ -1,10 +1,13 @@
+//utils
 import {lazy, Suspense} from 'react';
 import {Provider} from 'react-redux';
 import {ToastContainer, Slide} from 'react-toastify';
 import store from './redux/store';
 import persistor from './redux/persistStore';
 import {PersistGate} from 'redux-persist/integration/react';
+//styles
 import {Spin} from 'antd';
+//components
 const Home = lazy(() => import('screens/Home'));
 
 function App() {
