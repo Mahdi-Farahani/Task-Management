@@ -1,7 +1,7 @@
-//style
+//styles
 import * as S from './styles';
-// //components
-// import {Button} from 'antd';
+//components
+
 
 function AppBar() {
   return (
