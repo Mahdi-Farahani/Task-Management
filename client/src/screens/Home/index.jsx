@@ -14,13 +14,13 @@ function Home() {
           <Card
             title='this is new ticket'
             description='this is new ticket this is new ticket'
-            priority='low'
+            priority='Low'
             status='todo'
           />
           <Card
             title='this is new ticket'
             description='this is new ticket this is new ticket'
-            priority='high'
+            priority='High'
             status='todo'
           />
         </TaskContainer>
@@ -28,13 +28,13 @@ function Home() {
           <Card
             title='this is new ticket'
             description='this is new ticket this is new ticket'
-            priority='medium'
+            priority='Medium'
             status='progress'
           />
           <Card
             title='this is new ticket'
             description='this is new ticket this is new ticket'
-            priority='medium'
+            priority='Medium'
             status='progress'
           />
         </TaskContainer>
@@ -42,7 +42,7 @@ function Home() {
           <Card
             title='this is new ticket'
             description='this is new ticket this is new ticket'
-            priority='medium'
+            priority='Medium'
             status='done'
           />
         </TaskContainer>

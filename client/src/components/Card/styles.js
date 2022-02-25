@@ -4,11 +4,11 @@ import {Button} from 'antd';
 
 const handlePriorityColor = (status) => {
   switch (status) {
-    case 'low':
+    case 'Low':
       return '#acadad';
-    case 'medium':
-      return '#dbb84d';
-    case 'high':
+    case 'Medium':
+      return '#f7bb65';
+    case 'High':
       return '#f0293d';
     default:
       break;
@@ -22,12 +22,8 @@ export const CardContainer = styled.div`
   padding: 0.5rem;
   border-radius: 8px;
   margin-top: 6px;
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 10px 10px 20px -10px rgb(0 0 0 / 32%);
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(15px);
-  border: 2px solid #fff;
+  background: #fff;
+  box-shadow: 10px 10px 20px -10px rgb(0 0 0 / 13%);
 `;
 export const Title = styled.h2`
   font-weight: 600;
