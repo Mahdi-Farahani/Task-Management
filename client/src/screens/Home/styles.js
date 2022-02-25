@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import * as C from 'styles/colors';
 
 export const BoardContainer = styled.div`
   display: flex;

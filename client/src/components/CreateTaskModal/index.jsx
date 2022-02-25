@@ -3,15 +3,12 @@ import * as S from './styles';
 //utils
 import PropTypes from 'prop-types';
 
-function CreateTaskModal({setIsOpenModal, title}) {
-  const handleSubmit = (data) => {
-    console.log(data);
-  };
+function CreateTaskModal({setIsOpenModal}) {
   return (
-    <S.ModalContainer onClick={() => setIsOpenModal(close)}>
+    <S.ModalContainer onClick={setIsOpenModal}>
       <S.ModalContent onClick={(e) => e.stopPropagation()}>
         <S.Title>Create new task</S.Title>
-        <S.Form onSubmit={handleSubmit}>
+        <S.Form onSubmit={() => {}}>
           <S.TextInput placeholder='Subject' />
           <S.TextArea placeholder='Description:' />
           <S.DropDown name='priority' id='priority_id'>
@@ -28,7 +25,6 @@ function CreateTaskModal({setIsOpenModal, title}) {
   );
 }
 CreateTaskModal.propTypes = {
-  title: PropTypes.string.isRequired,
   setIsOpenModal: PropTypes.func,
 };
 
