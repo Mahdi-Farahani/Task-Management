@@ -17,10 +17,13 @@ app.use('/tasks', taskRoutes);
 const PORT = process.env.PORT || 5000;
 
 mongoose
-	.connect(process.env.CONNECTION_URL, {
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-	})
+	.connect(
+		'mongodb+srv://mahdifrhn:Frhn0521369@cluster0.bmct7.mongodb.net/Task-Getir?retryWrites=true&w=majority',
+		{
+			useNewUrlParser: true,
+			useUnifiedTopology: true,
+		}
+	)
 	.then(() =>
 		app.listen(PORT, () =>
 			console.log(`Server Running on Port: http://localhost:${PORT}`)
