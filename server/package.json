@@ -6,7 +6,7 @@
   "description": "Simple task manager",
   "main": "app.js",
   "scripts": {
-    "start": "node .",
+    "start": "node app.js",
     "dev": "nodemon  app.js"
   },
   "dependencies": {
