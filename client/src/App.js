@@ -5,6 +5,7 @@ import {ToastContainer, Slide} from 'react-toastify';
 import store from './redux/store';
 import persistor from './redux/persistStore';
 import {PersistGate} from 'redux-persist/integration/react';
+import 'react-toastify/dist/ReactToastify.css';
 //styles
 import {Spin} from 'antd';
 //components

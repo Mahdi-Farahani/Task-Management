@@ -1,11 +1,26 @@
+// import {useEffect} from 'react';
 //styles
 import * as S from './styles';
 //components
 import AppBar from 'components/AppBar';
 import Card from 'components/Card';
 import TaskContainer from 'components/TaskContainer';
+//api
+// import TasksApi from 'apis/tasks';
 
-function Home() {
+export default function Home() {
+  // useEffect(() => {
+  //   const body = {
+  //     title: 'task two',
+  //     description: 'description for task one',
+  //     priority: 'High',
+  //     status: 'todo',
+  //   };
+  //   const status = 'Done';
+
+  //   TasksApi.changeStatusTask('62194fbeb682f3a17981fff6', status);
+  // }, []);
+
   return (
     <>
       <AppBar />
@@ -80,5 +95,3 @@ function Home() {
     </>
   );
 }
-
-export default Home;
