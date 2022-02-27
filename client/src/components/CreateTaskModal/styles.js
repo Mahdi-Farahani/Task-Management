@@ -10,34 +10,32 @@ export const ModalContainer = styled.div`
   width: 100%;
   height: 100vh;
   z-index: 1;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(3px);
 `;
 export const ModalContent = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: space-between;
-  background-color: ${C.colorWhite};
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 32px 0 rgb(124 124 129 / 45%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
   width: 50%;
-  height: 50%;
-  box-shadow: 10px 10px 20px -10px rgb(0 0 0 / 13%);
-  padding: 0.7rem;
+  padding: 1.2rem;
 `;
 export const Title = styled.h2`
   font-weight: 600;
   font-size: 18px;
   align-self: center;
   color: ${C.colorBlack};
-  margin: 5px 0px 15px 0px;
+  opacity: 0.7;
 `;
 export const Form = styled.form`
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  width: 80%;
-  height: 100%;
+  width: 100%;
 `;
 export const TextArea = styled.textarea`
   font-size: 18px;
@@ -72,14 +70,17 @@ export const TextInput = styled.input`
     outline: 0;
   }
 `;
-export const DropDown = styled.select`
-  align-self: flex-start;
-  font-size: 14px;
-  box-shadow: 0px 0px 6px 0px rgb(0 0 0 / 9%);
-  width: 30%;
-  border-radius: 11px;
-  padding: 0.8rem;
-  border: 1px solid ${C.colorGrey};
+export const BottomActions = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 15px;
+`;
+export const TopActions = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
   margin-bottom: 15px;
-  margin-left: -8px;
 `;

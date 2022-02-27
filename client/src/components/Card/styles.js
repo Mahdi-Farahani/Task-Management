@@ -23,6 +23,9 @@ export const CardContainer = styled.div`
   margin-top: 6px;
   background: #fff;
   box-shadow: 10px 10px 20px -10px rgb(0 0 0 / 13%);
+  backdrop-filter: blur(10px);
+  background: rgb(255 255 255 / 54%);
+  border: 1px solid #fff;
 `;
 export const Title = styled.h2`
   font-weight: 600;

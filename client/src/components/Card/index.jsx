@@ -7,6 +7,9 @@ import dayjs from 'dayjs';
 //components
 import Button from 'components/Button';
 
+//fixtures
+import {DONE, TODO} from 'fixtures';
+
 function Card({title, description, priority, status, createdAt}) {
   return (
     <S.CardContainer>
@@ -15,9 +18,9 @@ function Card({title, description, priority, status, createdAt}) {
       <S.Priority priority={priority}>{priority}</S.Priority>
       <S.BottomContent>
         <S.Data>{dayjs(createdAt).format('MMM D,  h:mm a')}</S.Data>
-        {status !== 'done' && (
+        {status !== DONE && (
           <Button size='medium' onClick={() => {}}>
-            {status === 'todo' ? 'Start' : 'Done'}
+            {status === TODO ? 'Start' : 'Done'}
           </Button>
         )}
       </S.BottomContent>
