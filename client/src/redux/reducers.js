@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux';
 
-import getAllTaskReducer from './tasks/getAllTaskReducer';
+import getTasksReduce from './tasks/getTasksReduce';
 import changeStatusTaskReducer from './tasks/changeStatusTaskReducer';
 import removeTaskReducer from './tasks/removeTaskReducer';
 
 const rootReducer = combineReducers({
-  getAllTaskReducer,
+  getTasksReduce,
   changeStatusTaskReducer,
   removeTaskReducer,
 });

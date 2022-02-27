@@ -32,7 +32,6 @@ export const Title = styled.h2`
   font-size: 16px;
   align-self: flex-start;
   color: ${C.colorBlack};
-  margin-bottom: 15px;
 `;
 export const Description = styled.h2`
   font-weight: 400;
@@ -63,9 +62,16 @@ export const BottomContent = styled.div`
   justify-content: space-between;
   margin-top: 20px;
 `;
-export const Data = styled.h4`
+export const Date = styled.h4`
   align-self: center;
   font-size: 12px;
   opacity: 0.5;
   margin: 0;
+`;
+export const TopActions = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 15px;
 `;

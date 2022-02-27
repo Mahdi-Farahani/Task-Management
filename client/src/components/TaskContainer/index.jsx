@@ -6,7 +6,9 @@ import PropTypes from 'prop-types';
 function TaskContainer({title, children}) {
   return (
     <S.Container>
-      <S.Title>{title}</S.Title>
+      <S.Header>
+        <S.Title>{title}</S.Title>
+      </S.Header>
       <S.Content>{children}</S.Content>
     </S.Container>
   );

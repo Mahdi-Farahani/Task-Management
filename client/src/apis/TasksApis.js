@@ -20,12 +20,7 @@ class TasksApis {
   }
 
   deleteTaskByIdApi(id) {
-    return API.delete(`/tasks/delete/${id}`).then((res) => {
-      if (res.status === 200) {
-        toast.success('Remove task successfully');
-      }
-      return res?.data;
-    });
+    return API.delete(`/tasks/delete/${id}`).then((res) => res?.data);
   }
 
   changeStatusTaskApi(id, status) {

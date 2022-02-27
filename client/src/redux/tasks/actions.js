@@ -8,6 +8,9 @@ import {
   REMOVE_TASK_STATUS_SUCCESS,
   REMOVE_TASK_STATUS,
   REMOVE_TASK_STATUS_FAIL,
+  GET_TASK,
+  GET_TASK_SUCCESS,
+  GET_TASK_FAIL,
 } from './actionTypes';
 
 //GET all task
@@ -25,6 +28,26 @@ export const getAllTasksSuccess = (tasks) => {
 export const getAllTasksFail = (error) => {
   return {
     type: GET_ALL_TASKS_FAIL,
+    payload: error,
+  };
+};
+
+//GET  task by id
+export const getTask = (id) => {
+  return {
+    type: GET_TASK,
+    payload: id,
+  };
+};
+export const getTaskSuccess = (tasks) => {
+  return {
+    type: GET_TASK_SUCCESS,
+    payload: tasks,
+  };
+};
+export const getTaskFail = (error) => {
+  return {
+    type: GET_TASK_FAIL,
     payload: error,
   };
 };

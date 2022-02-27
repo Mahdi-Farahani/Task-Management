@@ -25,3 +25,7 @@ export const Title = styled.h2`
   margin-bottom: 5px;
   padding: 0.5rem;
 `;
+export const Header = styled.div`
+  background: ${C.colorHeader};
+  border-radius: 8px;
+`;

@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 //style
 import * as S from './styles';
 //utils
@@ -10,25 +10,37 @@ import {Select} from 'antd';
 //icons
 import {CloseOutlined} from '@ant-design/icons';
 //redux
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {getAllTasks} from 'redux/tasks/actions';
 //api
 import TasksApis from 'apis/TasksApis';
 import {toast} from 'react-toastify';
 
+const initialValues = {
+  title: '',
+  description: '',
+  priority: 'Low',
+};
 function CreateTaskModal({setIsOpenModal}) {
   const dispatch = useDispatch();
+  const {currentTask, loadingTasks} = useSelector(
+    (state) => state.getTasksReduce
+  );
   const {Option} = Select;
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    priority: 'Low',
-  });
+  const [formData, setFormData] = useState(initialValues);
 
+  const handleInputChange = (e) => {
+    const {name, value} = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+  console.log(formData);
   const handleSubmit = () => {
     TasksApis.createTaskApi(formData)
       .then((res) => {
-        toast.success('Create task successfully');
+        toast.success(res?.message);
         setIsOpenModal();
         dispatch(getAllTasks());
       })
@@ -49,29 +61,28 @@ function CreateTaskModal({setIsOpenModal}) {
           <S.TextInput
             placeholder='Subject'
             value={formData.title}
-            onChange={(e) => {
-              setFormData({...formData, title: e.target.value});
-            }}
+            name='title'
+            onChange={handleInputChange}
           />
           <S.TextArea
-            value={formData.description}
             placeholder='Description:'
-            onChange={(e) => {
-              setFormData({...formData, description: e.target.value});
-            }}
+            value={formData.description}
+            name='description'
+            onChange={handleInputChange}
           />
           <S.BottomActions>
             <Select
               defaultValue='Low'
+              name='priority'
               style={{width: 120}}
-              onChange={(e) => {
-                setFormData({...formData, priority: e});
-              }}>
+              onChange={handleInputChange}>
               <Option value='Low'>Low</Option>
               <Option value='Medium'>Medium</Option>
               <Option value='High'>High</Option>
             </Select>
-            <Button onClick={handleSubmit}>Create Task</Button>
+            <Button onClick={handleSubmit}>
+              {currentTask ? 'Edit task' : 'Create task'}
+            </Button>
           </S.BottomActions>
         </S.Form>
       </S.ModalContent>
@@ -80,6 +91,7 @@ function CreateTaskModal({setIsOpenModal}) {
 }
 CreateTaskModal.propTypes = {
   setIsOpenModal: PropTypes.func,
+  // isEditMode: PropTypes.bool,
 };
 
 export default CreateTaskModal;

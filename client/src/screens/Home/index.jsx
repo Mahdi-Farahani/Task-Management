@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 //styles
 import * as S from './styles';
 
@@ -18,8 +18,9 @@ import {DONE, IN_PROGRESS, TODO} from 'fixtures';
 import {Skeleton} from 'antd';
 
 export default function Home() {
+  const [isEditMode, setIsEditMode] = useState(false);
   const dispatch = useDispatch();
-  const {tasks, loadingTasks} = useSelector((state) => state.getAllTaskReducer);
+  const {tasks, loadingTasks} = useSelector((state) => state.getTasksReduce);
 
   useEffect(() => {
     dispatch(getAllTasks());
@@ -43,7 +44,7 @@ export default function Home() {
 
   return (
     <>
-      <AppBar />
+      <AppBar setIsEditMode={setIsEditMode} />
       <S.BoardContainer>
         <TaskContainer title={TODO}>
           {loadingTasks ? (
@@ -54,13 +55,10 @@ export default function Home() {
                 item?.status === TODO && (
                   <Card
                     key={item?._id}
-                    title={item?.title}
-                    description={item?.description}
-                    priority={item?.priority}
-                    status={item?.status}
-                    createdAt={item?.createdAt}
+                    taskData={item}
                     handleClickActionTask={() => actionTodoTask(item?._id)}
                     handleClickRemoveTask={() => handleRemoveTask(item?._id)}
+                    setIsEditMode={() => setIsEditMode(true)}
                   />
                 )
             )
@@ -75,15 +73,12 @@ export default function Home() {
                 item?.status === IN_PROGRESS && (
                   <Card
                     key={item?._id}
-                    title={item?.title}
-                    description={item?.description}
-                    priority={item?.priority}
-                    status={item?.status}
-                    createdAt={item?.createdAt}
+                    taskData={item}
                     handleClickActionTask={() =>
                       actionInProgressTask(item?._id)
                     }
                     handleClickRemoveTask={() => handleRemoveTask(item?._id)}
+                    setIsEditMode={() => setIsEditMode(true)}
                   />
                 )
             )
@@ -98,12 +93,9 @@ export default function Home() {
                 item?.status === DONE && (
                   <Card
                     key={item?._id}
-                    title={item?.title}
-                    description={item?.description}
-                    priority={item?.priority}
-                    status={item?.status}
-                    createdAt={item?.createdAt}
+                    taskData={item}
                     handleClickRemoveTask={() => handleRemoveTask(item?._id)}
+                    setIsEditMode={() => setIsEditMode(true)}
                   />
                 )
             )

@@ -75,7 +75,6 @@ export const BottomActions = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-top: 15px;
 `;
 export const TopActions = styled.div`
   display: flex;
