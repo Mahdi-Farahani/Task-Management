@@ -5,6 +5,9 @@ import {
   GET_TASK_DETAILS,
   GET_TASK_DETAILS_SUCCESS,
   GET_TASK_DETAILS_FAIL,
+  CREATE_TASK,
+  CREATE_TASK_SUCCESS,
+  CREATE_TASK_FAIL,
 } from './actionTypes';
 
 export const getAllTasks = () => {
@@ -36,7 +39,7 @@ export const getTaskDetails = (id) => {
 
 export const getTaskDetailsSuccess = (task) => {
   return {
-    type: GET_TASK_DETAILS_SUCCESS,
+    type: CREATE_TASK_SUCCESS,
     payload: task,
   };
 };
@@ -44,6 +47,27 @@ export const getTaskDetailsSuccess = (task) => {
 export const getTaskDetailsFail = (error) => {
   return {
     type: GET_TASK_DETAILS_FAIL,
+    payload: error,
+  };
+};
+
+export const createTask = (id) => {
+  return {
+    type: CREATE_TASK,
+    payload: id,
+  };
+};
+
+export const createTaskSuccess = (task) => {
+  return {
+    type: GET_TASK_DETAILS_SUCCESS,
+    payload: task,
+  };
+};
+
+export const createTaskFail = (error) => {
+  return {
+    type: CREATE_TASK_FAIL,
     payload: error,
   };
 };

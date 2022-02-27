@@ -1,3 +1,4 @@
+import {useState} from 'react';
 //style
 import * as S from './styles';
 //utils
@@ -6,15 +7,24 @@ import PropTypes from 'prop-types';
 //components
 import Button from 'components/Button';
 import {Select} from 'antd';
-
 //icons
 import {CloseOutlined} from '@ant-design/icons';
+//redux
+import {useDispatch} from 'react-redux';
+import {createTask} from 'redux/tasks/actions';
 
 function CreateTaskModal({setIsOpenModal}) {
+  const dispatch = useDispatch();
   const {Option} = Select;
-  function handleChange(value) {
-    console.log(`selected ${value}`);
-  }
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    priority: 'Low',
+  });
+
+  const handleSubmit = () => {
+    dispatch(createTask(formData));
+  };
 
   return (
     <S.ModalContainer onClick={setIsOpenModal}>
@@ -26,22 +36,35 @@ function CreateTaskModal({setIsOpenModal}) {
             onClick={setIsOpenModal}
           />
         </S.TopActions>
-
-        <S.Form onSubmit={() => {}}>
-          <S.TextInput placeholder='Subject' />
-          <S.TextArea placeholder='Description:' />
+        <div>
+          <S.TextInput
+            placeholder='Subject'
+            value={formData.title}
+            onChange={(e) => {
+              setFormData({...formData, title: e.target.value});
+            }}
+          />
+          <S.TextArea
+            value={formData.description}
+            placeholder='Description:'
+            onChange={(e) => {
+              setFormData({...formData, description: e.target.value});
+            }}
+          />
           <S.BottomActions>
             <Select
               defaultValue='Low'
               style={{width: 120}}
-              onChange={handleChange}>
+              onChange={(e) => {
+                setFormData({...formData, priority: e});
+              }}>
               <Option value='Low'>Low</Option>
               <Option value='Medium'>Medium</Option>
               <Option value='High'>High</Option>
             </Select>
-            <Button onClick={() => {}}>Create Task</Button>
+            <Button onClick={handleSubmit}>Create Task</Button>
           </S.BottomActions>
-        </S.Form>
+        </div>
       </S.ModalContent>
     </S.ModalContainer>
   );
