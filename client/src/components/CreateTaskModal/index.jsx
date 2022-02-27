@@ -26,11 +26,13 @@ function CreateTaskModal({setIsOpenModal}) {
   });
 
   const handleSubmit = () => {
-    TasksApis.createTaskApi(formData).then((res) => {
-      toast.success(res?.data);
-      setIsOpenModal();
-      dispatch(getAllTasks());
-    });
+    TasksApis.createTaskApi(formData)
+      .then((res) => {
+        toast.success('Create task successfully');
+        setIsOpenModal();
+        dispatch(getAllTasks());
+      })
+      .catch((err) => toast.error(err.response?.data?.message));
   };
 
   return (

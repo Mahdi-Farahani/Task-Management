@@ -2,8 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Task = require('../models/task.js');
 
-const router = express.Router();
-
 //GET all tasks
 const getTasks = async (req, res) => {
 	try {
@@ -31,7 +29,7 @@ const createTask = async (req, res) => {
 	const newTask = new Task(req.body);
 	try {
 		await newTask.save();
-		res.status(201).json(newTask);
+		res.status(201).send('Create task successfully');
 	} catch (error) {
 		res.status(404).json({ message: error.message });
 	}
@@ -44,7 +42,7 @@ const deleteTask = async (req, res) => {
 		if (!taskId)
 			return res.status(404).send(`there is not task with id: ${id}`);
 		await Task.findByIdAndRemove(id);
-		res.json({ message: 'Task deleted successfully.' });
+		res.status(201).send('Task removed successfully.');
 	} catch (error) {
 		res.status(400).json({ message: error.message });
 	}
@@ -52,20 +50,21 @@ const deleteTask = async (req, res) => {
 
 const updateTask = async (req, res) => {
 	const { id } = req.params;
-	const { title, description, status, priority } = req.body;
+	const { title, description, priority } = req.body;
 	try {
-		const taskId = await Task.findById(id);
-		if (!taskId)
+		const newTask = await Task.findById(id);
+		if (!newTask)
 			return res.status(404).send(`there is not task with id: ${id}`);
 		const updatedTask = {
 			title,
 			description,
-			status,
 			priority,
-			_id: id,
 		};
-		await Task.findByIdAndUpdate(id, updatedTask, { new: true });
-		res.json(updatedTask);
+		await Task.findByIdAndUpdate({ _id: id }, updatedTask, {
+			runValidators: true,
+			new: true,
+		});
+		res.status(201).send('Updated task successfully.');
 	} catch (error) {
 		res.status(404).json({ message: error.message });
 	}
