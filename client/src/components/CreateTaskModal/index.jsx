@@ -36,13 +36,15 @@ function CreateTaskModal({setIsOpenModal}) {
       [name]: value,
     });
   };
-  console.log(formData);
+
   const handleSubmit = () => {
     TasksApis.createTaskApi(formData)
       .then((res) => {
-        toast.success(res?.message);
-        setIsOpenModal();
-        dispatch(getAllTasks());
+        if (res?.status === 201) {
+          toast.success(res?.message);
+          setIsOpenModal();
+          dispatch(getAllTasks());
+        }
       })
       .catch((err) => toast.error(err.response?.data?.message));
   };

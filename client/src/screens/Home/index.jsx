@@ -1,19 +1,15 @@
 import {useEffect, useState} from 'react';
 //styles
 import * as S from './styles';
-
 //components
 import AppBar from 'components/AppBar';
 import Card from 'components/Card';
 import TaskContainer from 'components/TaskContainer';
-
 //redux
 import {useDispatch, useSelector} from 'react-redux';
 import {changeStatusTask, getAllTasks, removeTask} from 'redux/tasks/actions';
-
 //fixtures
 import {DONE, IN_PROGRESS, TODO} from 'fixtures';
-
 //spinner
 import {Skeleton} from 'antd';
 

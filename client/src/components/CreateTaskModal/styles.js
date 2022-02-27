@@ -22,6 +22,9 @@ export const ModalContent = styled.div`
   border-radius: 16px;
   width: 50%;
   padding: 1.2rem;
+  @media (max-width: 768px) {
+    width: 85%;
+  }
 `;
 export const Title = styled.h2`
   font-weight: 600;
