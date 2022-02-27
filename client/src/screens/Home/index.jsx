@@ -9,7 +9,7 @@ import TaskContainer from 'components/TaskContainer';
 
 //redux
 import {useDispatch, useSelector} from 'react-redux';
-import {getAllTasks} from 'redux/tasks/actions';
+import {changeStatusTask, getAllTasks} from 'redux/tasks/actions';
 
 //fixtures
 import {DONE, IN_PROGRESS, TODO} from 'fixtures';
@@ -25,6 +25,16 @@ export default function Home() {
     dispatch(getAllTasks());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  //handle action TODO tasks
+  const actionTodoTask = (id) => {
+    dispatch(changeStatusTask(id, IN_PROGRESS));
+  };
+
+  //handle action TODO tasks
+  const actionInProgressTask = (id) => {
+    dispatch(changeStatusTask(id, DONE));
+  };
 
   return (
     <>
@@ -44,6 +54,7 @@ export default function Home() {
                     priority={item?.priority}
                     status={item?.status}
                     createdAt={item?.createdAt}
+                    handleClickActionTask={() => actionTodoTask(item?._id)}
                   />
                 )
             )
@@ -63,6 +74,9 @@ export default function Home() {
                     priority={item?.priority}
                     status={item?.status}
                     createdAt={item?.createdAt}
+                    handleClickActionTask={() =>
+                      actionInProgressTask(item?._id)
+                    }
                   />
                 )
             )

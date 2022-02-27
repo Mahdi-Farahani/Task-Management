@@ -1,11 +1,10 @@
 import {
-  CREATE_TASK,
-  CREATE_TASK_SUCCESS,
-  CREATE_TASK_FAIL,
+  CHANGE_TASK_STATUS,
+  CHANGE_TASK_STATUS_SUCCESS,
+  CHANGE_TASK_STATUS_FAIL,
 } from './actionTypes';
 
 const initialState = {
-  task: {},
   loadingCreateTask: false,
   error: {
     message: '',
@@ -14,13 +13,13 @@ const initialState = {
 
 const createTaskReducer = (state = initialState, action) => {
   switch (action.type) {
-    case CREATE_TASK:
+    case CHANGE_TASK_STATUS:
       state = {...state, loadingCreateTask: true};
       break;
-    case CREATE_TASK_SUCCESS:
-      state = {...state, task: action.payload, loadingCreateTask: false};
+    case CHANGE_TASK_STATUS_SUCCESS:
+      state = {...state, loadingCreateTask: false};
       break;
-    case CREATE_TASK_FAIL:
+    case CHANGE_TASK_STATUS_FAIL:
       state = {
         error: {
           message: action.payload,

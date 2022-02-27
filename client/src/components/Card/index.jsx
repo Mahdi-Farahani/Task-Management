@@ -10,7 +10,14 @@ import Button from 'components/Button';
 //fixtures
 import {DONE, TODO} from 'fixtures';
 
-function Card({title, description, priority, status, createdAt}) {
+function Card({
+  title,
+  description,
+  priority,
+  status,
+  createdAt,
+  handleClickActionTask,
+}) {
   return (
     <S.CardContainer>
       <S.Title>{title}</S.Title>
@@ -19,7 +26,7 @@ function Card({title, description, priority, status, createdAt}) {
       <S.BottomContent>
         <S.Data>{dayjs(createdAt).format('MMM D,  h:mm a')}</S.Data>
         {status !== DONE && (
-          <Button size='medium' onClick={() => {}}>
+          <Button size='medium' onClick={handleClickActionTask}>
             {status === TODO ? 'Start' : 'Done'}
           </Button>
         )}
@@ -34,6 +41,7 @@ Card.propTypes = {
   priority: PropTypes.string,
   status: PropTypes.string.isRequired,
   createdAt: PropTypes.string,
+  handleClickActionTask: PropTypes.func,
 };
 
 export default Card;

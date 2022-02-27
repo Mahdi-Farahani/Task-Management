@@ -36,7 +36,7 @@ function CreateTaskModal({setIsOpenModal}) {
             onClick={setIsOpenModal}
           />
         </S.TopActions>
-        <div>
+        <S.Form>
           <S.TextInput
             placeholder='Subject'
             value={formData.title}
@@ -64,7 +64,7 @@ function CreateTaskModal({setIsOpenModal}) {
             </Select>
             <Button onClick={handleSubmit}>Create Task</Button>
           </S.BottomActions>
-        </div>
+        </S.Form>
       </S.ModalContent>
     </S.ModalContainer>
   );
