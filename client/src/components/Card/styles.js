@@ -55,6 +55,18 @@ export const Priority = styled.h3`
   width: 22%;
   color: ${C.colorWhite};
 `;
+export const BottomContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+`;
+export const Data = styled.h4`
+  align-self: center;
+  font-size: 12px;
+  opacity: 0.5;
+  margin: 0;
+`;
 export const AddButton = styled(Button)`
   display: flex;
   justify-content: center;
@@ -68,6 +80,7 @@ export const AddButton = styled(Button)`
   cursor: pointer;
   border: none;
   :hover {
+    color: ${C.colorWhite};
     background-color: ${C.colorSecondary};
   }
 `;
