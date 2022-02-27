@@ -20,7 +20,7 @@ const taskSchema = mongoose.Schema(
 		status: {
 			type: String,
 			required: true,
-			default: 'todo',
+			default: 'Todo',
 		},
 	},
 	{
