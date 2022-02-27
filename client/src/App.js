@@ -5,9 +5,8 @@ import {ToastContainer, Slide} from 'react-toastify';
 import store from './redux';
 import 'react-toastify/dist/ReactToastify.css';
 //styles
-import {Spin} from 'antd';
 import 'antd/dist/antd.min.css';
-
+import SpinnerLoading from 'components/SpinnerLoading';
 //components
 const Home = lazy(() => import('screens/Home'));
 
@@ -21,7 +20,7 @@ function App() {
         closeOnClick
         transition={Slide}
       />
-      <Suspense fallback={<Spin />}>
+      <Suspense fallback={<SpinnerLoading />}>
         <Home />
       </Suspense>
     </Provider>
