@@ -15,6 +15,8 @@ import {getAllTasks} from 'redux/tasks/actions';
 //api
 import TasksApis from 'apis/TasksApis';
 import {toast} from 'react-toastify';
+//loading
+import SpinnerLoading from 'components/SpinnerLoading';
 
 const initialValues = {
   title: '',
@@ -23,9 +25,8 @@ const initialValues = {
 };
 function CreateTaskModal({setIsOpenModal}) {
   const dispatch = useDispatch();
-  const {currentTask, loadingTasks} = useSelector(
-    (state) => state.getTasksReduce
-  );
+  const [isLoading, setIsLoading] = useState(false);
+  const {currentTask} = useSelector((state) => state.getTasksReduce);
   const {Option} = Select;
   const [formData, setFormData] = useState(initialValues);
 
@@ -38,19 +39,20 @@ function CreateTaskModal({setIsOpenModal}) {
   };
 
   const handleSubmit = () => {
+    setIsLoading(true);
     TasksApis.createTaskApi(formData)
       .then((res) => {
-        if (res?.status === 201) {
-          toast.success(res?.message);
-          setIsOpenModal();
-          dispatch(getAllTasks());
-        }
+        toast.success(res?.message);
+        setIsOpenModal();
+        dispatch(getAllTasks());
       })
-      .catch((err) => toast.error(err.response?.data?.message));
+      .catch((err) => toast.error(err.response?.data?.message))
+      .finally(() => setIsLoading(false));
   };
 
   return (
     <S.ModalContainer onClick={setIsOpenModal}>
+      {isLoading && <SpinnerLoading />}
       <S.ModalContent onClick={(e) => e.stopPropagation()}>
         <S.TopActions>
           <S.Title>Create new task</S.Title>
@@ -75,9 +77,10 @@ function CreateTaskModal({setIsOpenModal}) {
           <S.BottomActions>
             <Select
               defaultValue='Low'
-              name='priority'
               style={{width: 120}}
-              onChange={handleInputChange}>
+              onChange={(e) => {
+                setFormData({...formData, priority: e});
+              }}>
               <Option value='Low'>Low</Option>
               <Option value='Medium'>Medium</Option>
               <Option value='High'>High</Option>

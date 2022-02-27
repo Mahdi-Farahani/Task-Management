@@ -21,25 +21,30 @@ export const CardContainer = styled.div`
   padding: 0.5rem;
   border-radius: 8px;
   margin-top: 6px;
-  background: #fff;
-  box-shadow: 10px 10px 20px -10px rgb(0 0 0 / 13%);
-  backdrop-filter: blur(10px);
-  background: rgb(255 255 255 / 54%);
-  border: 1px solid #fff;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 32px 0 rgb(124 124 129 / 13%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
 `;
 export const Title = styled.h2`
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
   align-self: flex-start;
   color: ${C.colorBlack};
 `;
 export const Description = styled.h2`
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   align-self: flex-start;
   color: ${C.colorBlack};
   opacity: 0.8;
   margin-bottom: 5px;
+  border-radius: 8px;
+  width: 100%;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  overflow: auto;
+  padding: 0.2rem;
 `;
 export const Priority = styled.h3`
   display: flex;
@@ -52,15 +57,14 @@ export const Priority = styled.h3`
   background-color: ${(props) => handlePriorityColor(props.priority)};
   border-radius: 16px;
   padding: 0.2rem;
-  margin: 10px 0px 10px 0px;
   width: 22%;
   color: ${C.colorWhite};
+  margin-top: 8px;
 `;
 export const BottomContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 20px;
 `;
 export const Date = styled.h4`
   align-self: center;

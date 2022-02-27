@@ -43,7 +43,7 @@ function Card({
             }}
           />
           <DeleteOutlined
-            style={{fontSize: '18px', color: 'red', opacity: 0.7}}
+            style={{fontSize: '18px', color: '#e37e4b'}}
             onClick={handleClickRemoveTask}
           />
         </div>

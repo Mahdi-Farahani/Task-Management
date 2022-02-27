@@ -9,7 +9,7 @@ export const ModalContainer = styled.div`
   top: 0;
   width: 100%;
   height: 100vh;
-  z-index: 1;
+  z-index: 100;
   backdrop-filter: blur(3px);
 `;
 export const ModalContent = styled.div`

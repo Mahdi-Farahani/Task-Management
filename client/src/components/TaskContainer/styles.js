@@ -10,6 +10,7 @@ export const Container = styled.div`
   border-radius: 8px;
   margin: 10px;
   padding: 0.8rem;
+  background: linear-gradient(to top, #ffffff, #6dd5fa, #2980b9);
 `;
 export const Content = styled.div`
   display: flex;
@@ -26,6 +27,10 @@ export const Title = styled.h2`
   padding: 0.5rem;
 `;
 export const Header = styled.div`
-  background: ${C.colorHeader};
   border-radius: 8px;
+  box-shadow: 10px 10px 20px -10px rgb(0 0 0 / 5%);
+  backdrop-filter: blur(10px);
+  background: rgb(166 194 247 / 30%);
+  border: 1px solid rgb(255 255 255 / 50%);
+  margin-bottom: 5px;
 `;

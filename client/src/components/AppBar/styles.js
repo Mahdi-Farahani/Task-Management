@@ -6,7 +6,7 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: ${C.colorHeader};
+  background: linear-gradient(to top, #ffffff, #6dd5fa, #2980b9);
 `;
 export const Title = styled.h2`
   font-weight: 600;
