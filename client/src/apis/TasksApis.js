@@ -15,7 +15,7 @@ class TasksApis {
 
   createTaskApi(body) {
     return API.post('/tasks/create', body)
-      .then((res) => res.data)
+      .then((res) => res)
       .catch((err) => toast.error(err.response?.data?.message));
   }
 
@@ -32,7 +32,9 @@ class TasksApis {
     });
   }
   editTaskApi(id, body) {
-    return API.put(`/tasks/edit/${id}`, body).then((res) => res?.data);
+    return API.put(`/tasks/edit/${id}`, body)
+      .then((res) => res)
+      .catch((err) => toast.error(err.response?.data?.message));
   }
 }
 

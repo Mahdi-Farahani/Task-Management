@@ -42,19 +42,21 @@ function CreateTaskModal({setIsOpenModal, setCloseEditMode, editTaskData}) {
       priority: formData.priority,
     };
     if (editTaskData) {
-      TasksApis.editTaskApi(editTaskData?._id, editBody)
-        .then((res) => {
-          toast.success(res.message);
+      TasksApis.editTaskApi(editTaskData?._id, editBody).then((res) => {
+        if (res.status === 201) {
+          toast.success(res?.data?.message);
           setIsOpenBothMode();
           dispatch(getAllTasks());
-        })
-        .catch((err) => toast.error(err.response?.data?.message));
+        }
+      });
     } else {
       TasksApis.createTaskApi(formData)
         .then((res) => {
-          toast.success(res?.message);
-          setIsOpenModal();
-          dispatch(getAllTasks());
+          if (res.status === 201) {
+            toast.success(res?.data?.message);
+            dispatch(getAllTasks());
+            setIsOpenModal();
+          }
         })
         .catch((err) => toast.error(err.response?.data?.message));
     }

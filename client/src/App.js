@@ -19,6 +19,7 @@ function App() {
         hideProgressBar
         closeOnClick
         transition={Slide}
+        position='bottom-left'
       />
       <Suspense fallback={<SpinnerLoading />}>
         <Home />
