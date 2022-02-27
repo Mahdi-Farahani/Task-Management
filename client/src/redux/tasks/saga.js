@@ -1,16 +1,10 @@
 import {takeLatest, put, call} from 'redux-saga/effects';
 //types
-import {
-  GET_ALL_TASKS,
-  GET_TASK_DETAILS,
-  CHANGE_TASK_STATUS,
-} from './actionTypes';
+import {GET_ALL_TASKS, CHANGE_TASK_STATUS} from './actionTypes';
 //actions
 import {
   getAllTasksSuccess,
   getAllTasksFail,
-  getTaskDetailsSuccess,
-  getTaskDetailsFail,
   changeStatusTaskSuccess,
   changeStatusTaskFail,
 } from './actions';
@@ -31,17 +25,6 @@ function* onGetTasks() {
   }
 }
 
-//get task by id
-function* onGetTaskDetails({payload: id}) {
-  try {
-    const response = yield call(TasksApis.getTaskByIdApi, id);
-    yield put(getTaskDetailsSuccess(response));
-  } catch (error) {
-    toast.error(error.response.data);
-    yield put(getTaskDetailsFail(error.response.data));
-  }
-}
-
 //change task status
 function* onChangeTaskStatus({payload: id, status}) {
   try {
@@ -57,7 +40,6 @@ function* onChangeTaskStatus({payload: id, status}) {
 
 function* TaskSaga() {
   yield takeLatest(GET_ALL_TASKS, onGetTasks);
-  yield takeLatest(GET_TASK_DETAILS, onGetTaskDetails);
   yield takeLatest(CHANGE_TASK_STATUS, onChangeTaskStatus);
 }
 
