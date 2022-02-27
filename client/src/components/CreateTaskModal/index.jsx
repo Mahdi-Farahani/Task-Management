@@ -3,6 +3,9 @@ import * as S from './styles';
 //utils
 import PropTypes from 'prop-types';
 
+//components
+import Button from 'components/Button';
+
 function CreateTaskModal({setIsOpenModal}) {
   return (
     <S.ModalContainer onClick={setIsOpenModal}>
@@ -16,9 +19,7 @@ function CreateTaskModal({setIsOpenModal}) {
             <option value='Medium'>Medium</option>
             <option value='High'>High</option>
           </S.DropDown>
-          <S.AddButton type='submit' onClick={() => {}}>
-            Create Task
-          </S.AddButton>
+          <Button onClick={() => {}}>Create Task</Button>
         </S.Form>
       </S.ModalContent>
     </S.ModalContainer>

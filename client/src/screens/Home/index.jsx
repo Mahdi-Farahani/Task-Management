@@ -12,7 +12,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getAllTasks} from 'redux/tasks/actions';
 
 //fixtures
-import {TODO} from 'fixtures';
+import {DONE, IN_PROGRESS, TODO} from 'fixtures';
 
 //spinner
 import {Skeleton} from 'antd';
@@ -49,8 +49,44 @@ export default function Home() {
             )
           )}
         </TaskContainer>
-        <TaskContainer title='In Progress'></TaskContainer>
-        <TaskContainer title='Done'></TaskContainer>
+        <TaskContainer title={IN_PROGRESS}>
+          {loadingTasks ? (
+            <Skeleton active />
+          ) : (
+            tasks?.map(
+              (item) =>
+                item?.status === IN_PROGRESS && (
+                  <Card
+                    key={item?._id}
+                    title={item?.title}
+                    description={item?.description}
+                    priority={item?.priority}
+                    status={item?.status}
+                    createdAt={item?.createdAt}
+                  />
+                )
+            )
+          )}
+        </TaskContainer>
+        <TaskContainer title={DONE}>
+          {loadingTasks ? (
+            <Skeleton active />
+          ) : (
+            tasks?.map(
+              (item) =>
+                item?.status === DONE && (
+                  <Card
+                    key={item?._id}
+                    title={item?.title}
+                    description={item?.description}
+                    priority={item?.priority}
+                    status={item?.status}
+                    createdAt={item?.createdAt}
+                  />
+                )
+            )
+          )}
+        </TaskContainer>
       </S.BoardContainer>
     </>
   );

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import * as C from 'styles/colors';
-import {Button} from 'antd';
 
 const handlePriorityColor = (status) => {
   switch (status) {
@@ -66,21 +65,4 @@ export const Data = styled.h4`
   font-size: 12px;
   opacity: 0.5;
   margin: 0;
-`;
-export const AddButton = styled(Button)`
-  display: flex;
-  justify-content: center;
-  align-self: flex-end;
-  font-weight: 600;
-  color: ${C.colorWhite};
-  background-color: ${C.colorPrimary};
-  border-radius: 8px;
-  width: 30%;
-  padding: 0.3rem;
-  cursor: pointer;
-  border: none;
-  :hover {
-    color: ${C.colorWhite};
-    background-color: ${C.colorSecondary};
-  }
 `;

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import * as C from 'styles/colors';
-import {Button} from 'antd';
 
 export const ModalContainer = styled.div`
   position: absolute;
@@ -83,21 +82,4 @@ export const DropDown = styled.select`
   border: 1px solid ${C.colorGrey};
   margin-bottom: 15px;
   margin-left: -8px;
-`;
-export const AddButton = styled(Button)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: flex-end;
-  font-weight: 500;
-  color: ${C.colorWhite};
-  background-color: ${C.colorPrimary};
-  border-radius: 8px;
-  width: 30%;
-  height: 40px;
-  cursor: pointer;
-  border: none;
-  :hover {
-    background-color: ${C.colorSecondary};
-  }
 `;

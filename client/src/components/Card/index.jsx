@@ -4,6 +4,9 @@ import * as S from './styles';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 
+//components
+import Button from 'components/Button';
+
 function Card({title, description, priority, status, createdAt}) {
   return (
     <S.CardContainer>
@@ -13,9 +16,9 @@ function Card({title, description, priority, status, createdAt}) {
       <S.BottomContent>
         <S.Data>{dayjs(createdAt).format('MMM D,  h:mm a')}</S.Data>
         {status !== 'done' && (
-          <S.AddButton onClick={() => {}}>
+          <Button size='medium' onClick={() => {}}>
             {status === 'todo' ? 'Start' : 'Done'}
-          </S.AddButton>
+          </Button>
         )}
       </S.BottomContent>
     </S.CardContainer>
