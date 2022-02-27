@@ -113,7 +113,6 @@ export default function Home() {
           isEditMode={isEditMode}
         />
       )}
-      )
     </>
   );
 }
