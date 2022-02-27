@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 //style
 import * as S from './styles';
 //utils
@@ -10,25 +10,22 @@ import {Select} from 'antd';
 //icons
 import {CloseOutlined} from '@ant-design/icons';
 //redux
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {getAllTasks} from 'redux/tasks/actions';
 //api
 import TasksApis from 'apis/TasksApis';
 import {toast} from 'react-toastify';
-//loading
-import SpinnerLoading from 'components/SpinnerLoading';
 
 const initialValues = {
   title: '',
   description: '',
   priority: 'Low',
 };
-function CreateTaskModal({setIsOpenModal}) {
+function CreateTaskModal({setIsOpenModal, setCloseEditMode, editTaskData}) {
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(false);
-  const {currentTask} = useSelector((state) => state.getTasksReduce);
+  const setIsOpenBothMode = setIsOpenModal || setCloseEditMode;
   const {Option} = Select;
-  const [formData, setFormData] = useState(initialValues);
+  const [formData, setFormData] = useState(editTaskData || initialValues);
 
   const handleInputChange = (e) => {
     const {name, value} = e.target;
@@ -39,26 +36,38 @@ function CreateTaskModal({setIsOpenModal}) {
   };
 
   const handleSubmit = () => {
-    setIsLoading(true);
-    TasksApis.createTaskApi(formData)
-      .then((res) => {
-        toast.success(res?.message);
-        setIsOpenModal();
-        dispatch(getAllTasks());
-      })
-      .catch((err) => toast.error(err.response?.data?.message))
-      .finally(() => setIsLoading(false));
+    const editBody = {
+      title: formData.title,
+      description: formData.description,
+      priority: formData.priority,
+    };
+    if (editTaskData) {
+      TasksApis.editTaskApi(editTaskData?._id, editBody)
+        .then((res) => {
+          toast.success(res.message);
+          setIsOpenBothMode();
+          dispatch(getAllTasks());
+        })
+        .catch((err) => toast.error(err.response?.data?.message));
+    } else {
+      TasksApis.createTaskApi(formData)
+        .then((res) => {
+          toast.success(res?.message);
+          setIsOpenModal();
+          dispatch(getAllTasks());
+        })
+        .catch((err) => toast.error(err.response?.data?.message));
+    }
   };
 
   return (
-    <S.ModalContainer onClick={setIsOpenModal}>
-      {isLoading && <SpinnerLoading />}
+    <S.ModalContainer onClick={setIsOpenBothMode}>
       <S.ModalContent onClick={(e) => e.stopPropagation()}>
         <S.TopActions>
           <S.Title>Create new task</S.Title>
           <CloseOutlined
             style={{fontSize: '18px', opacity: 0.7}}
-            onClick={setIsOpenModal}
+            onClick={setIsOpenBothMode}
           />
         </S.TopActions>
         <S.Form>
@@ -76,7 +85,7 @@ function CreateTaskModal({setIsOpenModal}) {
           />
           <S.BottomActions>
             <Select
-              defaultValue='Low'
+              defaultValue={formData.priority}
               style={{width: 120}}
               onChange={(e) => {
                 setFormData({...formData, priority: e});
@@ -86,7 +95,7 @@ function CreateTaskModal({setIsOpenModal}) {
               <Option value='High'>High</Option>
             </Select>
             <Button onClick={handleSubmit}>
-              {currentTask ? 'Edit task' : 'Create task'}
+              {editTaskData ? 'Edit task' : 'Create task'}
             </Button>
           </S.BottomActions>
         </S.Form>
@@ -96,7 +105,8 @@ function CreateTaskModal({setIsOpenModal}) {
 }
 CreateTaskModal.propTypes = {
   setIsOpenModal: PropTypes.func,
-  // isEditMode: PropTypes.bool,
+  setCloseEditMode: PropTypes.func,
+  editTaskData: PropTypes.object,
 };
 
 export default CreateTaskModal;

@@ -12,11 +12,16 @@ import {changeStatusTask, getAllTasks, removeTask} from 'redux/tasks/actions';
 import {DONE, IN_PROGRESS, TODO} from 'fixtures';
 //spinner
 import {Skeleton} from 'antd';
+import CreateTaskModal from 'components/CreateTaskModal';
+//loading
+import SpinnerLoading from 'components/SpinnerLoading';
 
 export default function Home() {
   const [isEditMode, setIsEditMode] = useState(false);
   const dispatch = useDispatch();
-  const {tasks, loadingTasks} = useSelector((state) => state.getTasksReduce);
+  const {tasks, currentTask, loadingTasks} = useSelector(
+    (state) => state.getTasksReduce
+  );
 
   useEffect(() => {
     dispatch(getAllTasks());
@@ -40,6 +45,7 @@ export default function Home() {
 
   return (
     <>
+      {loadingTasks && <SpinnerLoading />}
       <AppBar setIsEditMode={setIsEditMode} />
       <S.BoardContainer>
         <TaskContainer title={TODO}>
@@ -98,6 +104,16 @@ export default function Home() {
           )}
         </TaskContainer>
       </S.BoardContainer>
+      {isEditMode && !loadingTasks && (
+        <CreateTaskModal
+          setCloseEditMode={() => {
+            setIsEditMode(false);
+          }}
+          editTaskData={currentTask}
+          isEditMode={isEditMode}
+        />
+      )}
+      )
     </>
   );
 }

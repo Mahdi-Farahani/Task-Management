@@ -57,7 +57,7 @@ export const Priority = styled.h3`
   background-color: ${(props) => handlePriorityColor(props.priority)};
   border-radius: 16px;
   padding: 0.2rem;
-  width: 22%;
+  width: 25%;
   color: ${C.colorWhite};
   margin-top: 8px;
 `;

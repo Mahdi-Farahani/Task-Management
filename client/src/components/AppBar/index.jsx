@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import {useState} from 'react';
 //utils
 import PropTypes from 'prop-types';
 //styles
@@ -9,7 +9,6 @@ import Button from 'components/Button';
 
 function AppBar({isEditMode, setIsEditMode}) {
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const isOpenCreateTaskModal = isEditMode || isOpenModal;
 
   return (
     <S.Container>
@@ -21,7 +20,7 @@ function AppBar({isEditMode, setIsEditMode}) {
         }}>
         Create Task
       </Button>
-      {isOpenCreateTaskModal && (
+      {isOpenModal && (
         <CreateTaskModal
           setIsOpenModal={() => {
             setIsOpenModal(false);

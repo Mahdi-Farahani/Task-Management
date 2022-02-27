@@ -31,6 +31,9 @@ class TasksApis {
       return res?.data;
     });
   }
+  editTaskApi(id, body) {
+    return API.put(`/tasks/edit/${id}`, body).then((res) => res?.data);
+  }
 }
 
 export default new TasksApis();
