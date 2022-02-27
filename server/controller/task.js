@@ -5,7 +5,7 @@ const Task = require('../models/task.js');
 //GET all tasks
 const getTasks = async (req, res) => {
 	try {
-		const tasks = await Task.find();
+		const tasks = await Task.find().sort({ createdAt: 'desc' }).exec();
 		res.status(200).json(tasks);
 	} catch (error) {
 		res.status(404).json({ message: error.message });
@@ -29,7 +29,7 @@ const createTask = async (req, res) => {
 	const newTask = new Task(req.body);
 	try {
 		await newTask.save();
-		res.status(201).send('Create task successfully');
+		res.status(201).send({ message: 'Create task successfully' });
 	} catch (error) {
 		res.status(404).json({ message: error.message });
 	}
@@ -42,7 +42,7 @@ const deleteTask = async (req, res) => {
 		if (!taskId)
 			return res.status(404).send(`there is not task with id: ${id}`);
 		await Task.findByIdAndRemove(id);
-		res.status(201).send('Task removed successfully.');
+		res.status(201).send({ message: 'Task removed successfully.' });
 	} catch (error) {
 		res.status(400).json({ message: error.message });
 	}
@@ -64,7 +64,7 @@ const updateTask = async (req, res) => {
 			runValidators: true,
 			new: true,
 		});
-		res.status(201).send('Updated task successfully.');
+		res.status(201).send({ message: 'Updated task successfully.' });
 	} catch (error) {
 		res.status(404).json({ message: error.message });
 	}
@@ -80,7 +80,7 @@ const changeStatus = async (req, res) => {
 		if (!taskId)
 			return res.status(404).send(`there is not task with id: ${id}`);
 		if (!selectStatus.has(status)) {
-			return res.status(404).send('status is wrong');
+			return res.status(404).send({ message: 'status is wrong' });
 		}
 		const updatedTask = await Task.findByIdAndUpdate(
 			id,
