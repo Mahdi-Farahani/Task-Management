@@ -14,7 +14,9 @@ class TasksApis {
   }
 
   createTaskApi(body) {
-    return API.post('/tasks/create', body).then((res) => res?.data);
+    return API.post('/tasks/create', body)
+      .then((res) => res?.data)
+      .catch((err) => toast.error(err?.response?.data));
   }
 
   deleteTaskByIdApi(id) {

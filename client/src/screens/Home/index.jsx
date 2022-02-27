@@ -31,7 +31,7 @@ export default function Home() {
     dispatch(changeStatusTask(id, IN_PROGRESS));
   };
 
-  //handle action TODO tasks
+  //handle action DONE tasks
   const actionInProgressTask = (id) => {
     dispatch(changeStatusTask(id, DONE));
   };

@@ -11,7 +11,10 @@ import {Select} from 'antd';
 import {CloseOutlined} from '@ant-design/icons';
 //redux
 import {useDispatch} from 'react-redux';
-import {createTask} from 'redux/tasks/actions';
+import {getAllTasks} from 'redux/tasks/actions';
+//api
+import TasksApis from 'apis/TasksApis';
+import {toast} from 'react-toastify';
 
 function CreateTaskModal({setIsOpenModal}) {
   const dispatch = useDispatch();
@@ -23,7 +26,11 @@ function CreateTaskModal({setIsOpenModal}) {
   });
 
   const handleSubmit = () => {
-    dispatch(createTask(formData));
+    TasksApis.createTaskApi(formData).then((res) => {
+      toast.success(res?.data);
+      setIsOpenModal();
+      dispatch(getAllTasks());
+    });
   };
 
   return (

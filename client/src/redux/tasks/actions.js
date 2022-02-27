@@ -5,9 +5,6 @@ import {
   GET_TASK_DETAILS,
   GET_TASK_DETAILS_SUCCESS,
   GET_TASK_DETAILS_FAIL,
-  CREATE_TASK,
-  CREATE_TASK_SUCCESS,
-  CREATE_TASK_FAIL,
   CHANGE_TASK_STATUS,
   CHANGE_TASK_STATUS_SUCCESS,
   CHANGE_TASK_STATUS_FAIL,
@@ -48,26 +45,6 @@ export const getTaskDetailsSuccess = (task) => {
 export const getTaskDetailsFail = (error) => {
   return {
     type: GET_TASK_DETAILS_FAIL,
-    payload: error,
-  };
-};
-
-//CREATE new task
-export const createTask = (id) => {
-  return {
-    type: CREATE_TASK,
-    payload: id,
-  };
-};
-export const createTaskSuccess = (task) => {
-  return {
-    type: CREATE_TASK_SUCCESS,
-    payload: task,
-  };
-};
-export const createTaskFail = (error) => {
-  return {
-    type: CREATE_TASK_FAIL,
     payload: error,
   };
 };
