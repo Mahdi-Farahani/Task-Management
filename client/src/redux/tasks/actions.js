@@ -5,6 +5,9 @@ import {
   CHANGE_TASK_STATUS,
   CHANGE_TASK_STATUS_SUCCESS,
   CHANGE_TASK_STATUS_FAIL,
+  REMOVE_TASK_STATUS_SUCCESS,
+  REMOVE_TASK_STATUS,
+  REMOVE_TASK_STATUS_FAIL,
 } from './actionTypes';
 
 //GET all task
@@ -43,6 +46,26 @@ export const changeStatusTaskSuccess = (task) => {
 export const changeStatusTaskFail = (error) => {
   return {
     type: CHANGE_TASK_STATUS_FAIL,
+    payload: error,
+  };
+};
+
+//Remove task
+export const removeTask = (id) => {
+  return {
+    type: REMOVE_TASK_STATUS,
+    payload: id,
+  };
+};
+export const removeTaskSuccess = (task) => {
+  return {
+    type: REMOVE_TASK_STATUS_SUCCESS,
+    payload: task,
+  };
+};
+export const removeTaskFail = (error) => {
+  return {
+    type: REMOVE_TASK_STATUS_FAIL,
     payload: error,
   };
 };

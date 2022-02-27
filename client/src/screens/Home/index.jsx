@@ -9,7 +9,7 @@ import TaskContainer from 'components/TaskContainer';
 
 //redux
 import {useDispatch, useSelector} from 'react-redux';
-import {changeStatusTask, getAllTasks} from 'redux/tasks/actions';
+import {changeStatusTask, getAllTasks, removeTask} from 'redux/tasks/actions';
 
 //fixtures
 import {DONE, IN_PROGRESS, TODO} from 'fixtures';
@@ -36,6 +36,11 @@ export default function Home() {
     dispatch(changeStatusTask(id, DONE));
   };
 
+  //handle delete task
+  const handleRemoveTask = (id) => {
+    dispatch(removeTask(id));
+  };
+
   return (
     <>
       <AppBar />
@@ -55,6 +60,7 @@ export default function Home() {
                     status={item?.status}
                     createdAt={item?.createdAt}
                     handleClickActionTask={() => actionTodoTask(item?._id)}
+                    handleClickRemoveTask={() => handleRemoveTask(item?._id)}
                   />
                 )
             )
@@ -77,6 +83,7 @@ export default function Home() {
                     handleClickActionTask={() =>
                       actionInProgressTask(item?._id)
                     }
+                    handleClickRemoveTask={() => handleRemoveTask(item?._id)}
                   />
                 )
             )
@@ -96,6 +103,7 @@ export default function Home() {
                     priority={item?.priority}
                     status={item?.status}
                     createdAt={item?.createdAt}
+                    handleClickRemoveTask={() => handleRemoveTask(item?._id)}
                   />
                 )
             )

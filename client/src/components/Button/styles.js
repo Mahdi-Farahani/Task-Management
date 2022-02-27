@@ -7,7 +7,11 @@ export const ButtonComponent = styled(Button)`
   border-radius: 8px;
   cursor: pointer;
   border: none;
+  background-color: ${(props) =>
+    props.btnmodel === 'secondary' ? C.colorBtnSecondary : C.colorPrimary};
+  margin: 3px;
   &:hover {
-    background-color: ${C.colorSecondary};
+    background-color: ${(props) =>
+      props.btnmodel === 'secondary' ? '#e05168' : C.colorSecondary};
   }
 `;

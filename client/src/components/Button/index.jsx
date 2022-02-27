@@ -3,9 +3,9 @@ import * as S from './styles';
 //utils
 import PropTypes from 'prop-types';
 
-function Button({children, ...rest}) {
+function Button({btnModel, children, ...rest}) {
   return (
-    <S.ButtonComponent type='primary' {...rest}>
+    <S.ButtonComponent btnmodel={btnModel} type='primary' {...rest}>
       {children}
     </S.ButtonComponent>
   );
@@ -13,6 +13,7 @@ function Button({children, ...rest}) {
 
 Button.propTypes = {
   children: PropTypes.string.isRequired,
+  btnModel: PropTypes.string,
 };
 
 export default Button;

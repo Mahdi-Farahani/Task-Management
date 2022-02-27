@@ -17,6 +17,7 @@ function Card({
   status,
   createdAt,
   handleClickActionTask,
+  handleClickRemoveTask,
 }) {
   return (
     <S.CardContainer>
@@ -25,11 +26,19 @@ function Card({
       <S.Priority priority={priority}>{priority}</S.Priority>
       <S.BottomContent>
         <S.Data>{dayjs(createdAt).format('MMM D,  h:mm a')}</S.Data>
-        {status !== DONE && (
-          <Button size='medium' onClick={handleClickActionTask}>
-            {status === TODO ? 'Start' : 'Done'}
+        <div>
+          <Button
+            btnModel='secondary'
+            size='medium'
+            onClick={handleClickRemoveTask}>
+            Remove
           </Button>
-        )}
+          {status !== DONE && (
+            <Button size='medium' onClick={handleClickActionTask}>
+              {status === TODO ? 'Start' : 'Done'}
+            </Button>
+          )}
+        </div>
       </S.BottomContent>
     </S.CardContainer>
   );
@@ -42,6 +51,7 @@ Card.propTypes = {
   status: PropTypes.string.isRequired,
   createdAt: PropTypes.string,
   handleClickActionTask: PropTypes.func,
+  handleClickRemoveTask: PropTypes.func,
 };
 
 export default Card;
