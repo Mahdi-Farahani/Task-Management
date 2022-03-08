@@ -1,4 +1,4 @@
-# Task-Getir
+# Task-Management
 
 Task Management 
 
@@ -8,7 +8,6 @@ Task Management
 
 ![task getir 2](https://user-images.githubusercontent.com/45122941/155904180-abbb263e-5064-485d-9f47-c111faacacfc.png)
 
-# Requirements
 
 - Nodejs
 - Expressjs
@@ -16,9 +15,5 @@ Task Management
 - Redux-Saga
 - ant design
 
-## description
-I have mostly tried to use the items you want, but as you know, there are many other ways to do this task.
 
-I appreciate you
-Mahdi Farahani
 
